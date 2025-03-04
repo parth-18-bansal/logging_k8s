@@ -1,0 +1,21 @@
+services:
+  flask-app:
+    build: .
+    ports:
+      - "5000:5000"  # host:container
+    networks:
+      - monitoring
+    logging:
+      driver: "json-file"
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge

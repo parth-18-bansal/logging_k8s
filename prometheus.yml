@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: 'flask-python-app'
+    static_configs:
+      - targets: ["flask-app:5000"]  
+
+# default path is /metrics so target will be flask-app:5000/metrics
+# but if we have custom path then we have to define the metric_path attribute also
